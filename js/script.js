@@ -1,7 +1,7 @@
 $(function () { 
     
     $('#createUserSubmit').click( sendData );
-
+    $('#getUsers').click( getData );
 
     function sendData () {
         var data         = {};
@@ -79,6 +79,33 @@ $(function () {
 
 
 
+ function getData () {
+			
+        $.ajax({
+            type: 'GET',
+            url: 'http://92.53.104.115:3000/api/v1/users',
+      
+            beforeSend: function ( jqXHR, settings ) {
+                console.log('Я выполняюсь перед отправкой ajax-запроса!');
+                // return false; //если в этом методе вернуть false, то ajax-запрос не выполнится
+            },
+            error: function ( jqXHR, textStatus, errorThrown ) {
+				
+                console.log('Я выполняюсь в случае ошибки!');
+                // console.log('Время превышено');
+            },
+            success: function ( data, textStatus, errorThrown ){
+				
+                console.log('Пользователь создан=' , data);
+            },
+            complete: function ( jqXHR, textStatus ) {
+				
+                console.log('Мне всё равно с каким статусом завершился ajax-запрос, я выполнюсь в любом случае!');
+            }
+        });
+
+        return false;
+    }
 
 
 

@@ -97,6 +97,11 @@ $(function () {
             success: function ( data, textStatus, errorThrown ){
 				
                 console.log('Пользователь создан=' , data);
+				
+				var i; var l;
+				for (i = 0, l = data.length; i < l; ++i){
+					$('#name').append('<li>'+ data[i].name +'</li>');
+				}
             },
             complete: function ( jqXHR, textStatus ) {
 				
